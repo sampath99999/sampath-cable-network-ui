@@ -1,0 +1,109 @@
+<body
+	class="vertical-layout vertical-menu-modern boxicon-layout no-card-shadow 1-column navbar-sticky footer-static blank-page"
+	data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+	<div class="app-content content">
+		<div class="content-overlay"></div>
+		<div class="content-wrapper">
+			<div class="content-header row">
+			</div>
+			<div class="content-body">
+				<!-- login page start -->
+				<div class="login-bg"></div>
+				<section id="auth-login" class="row flexbox-container">
+					<div class="col-md-7 col-lg-6 col-xl-4 col-10">
+						<div class="card bg-authentication mb-0">
+							<div class="row m-0">
+								<!-- left section-login -->
+								<div class="col-md-12 col-12 px-0">
+									<div class="card  mb-0 p-2 h-100 d-flex justify-content-center">
+										<div class="card-header pb-2">
+											<div class="card-title">
+
+												<div class="text-center">
+													<img src="/assets/images/logo/logo.png" class="login-logo mr-1"
+														alt="UDNI" alt="">
+													<h3 class="mt-1 text-bold-700">UDNI</h3>
+													<p class="mb-0 text-bold-400">Network Management System</p>
+												</div>
+
+											</div>
+										</div>
+										<div class="card-content">
+											<div class="card-body p-0 p-md-2">
+												<form [formGroup]="loginForm" (submit)="login()">
+													<div class="form-group mb-50">
+														<label class="text-bold-600" for="username">Username</label>
+														<input type="text" class="form-control" id="username"
+															formControlName="username" placeholder="Enter Username"
+															[ngClass]="{'is-invalid': loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || loginForm.get('username')?.dirty)}">
+														<div
+															*ngIf="loginForm.get('username')?.touched || loginForm.get('username')?.dirty">
+															<p class="text-danger"
+																*ngIf="loginForm.get('username')?.hasError('required')">
+																Username is required</p>
+															<p class="text-danger"
+																*ngIf="loginForm.get('username')?.hasError('minlength')">
+																Username should be at least 3 characters</p>
+															<p class="text-danger"
+																*ngIf="loginForm.get('username')?.hasError('maxlength')">
+																Username should be at most 25 charactersx`</p>
+														</div>
+													</div>
+													<div class="form-group mt-1">
+														<label class="text-bold-600" for="password">Password</label>
+														<input type="password" class="form-control" id="password"
+															formControlName="password" placeholder="Enter Password"
+															[ngClass]="{'is-invalid': loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)}">
+														<div
+															*ngIf="loginForm.get('password')?.touched || loginForm.get('password')?.dirty">
+															<p class="text-danger"
+																*ngIf="loginForm.get('password')?.hasError('required')">
+																Password is required</p>
+															<p class="text-danger"
+																*ngIf="loginForm.get('password')?.hasError('minlength')">
+																Password should be at least 3 characters</p>
+															<p class="text-danger"
+																*ngIf="loginForm.get('password')?.hasError('maxlength')">
+																Password should be at most 25 charactersx`</p>
+														</div>
+													</div>
+													<div
+														class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
+														<div class="text-left">
+															<div class="checkbox checkbox-sm">
+
+															</div>
+														</div>
+														<div class="text-right"><a href="forgot_password.html"
+																class="card-link"><small>Forgot
+																	Password?</small></a></div>
+													</div>
+													<button type="submit"
+														class="btn btn-primary glow w-100 position-relative"
+														[disabled]="loginForm.invalid || loading">
+														<div class="spinner-border spinner-border-sm" role="status"
+															*ngIf="loading">
+															<span class="sr-only">Loading...</span>
+														</div>
+														Login<i id="icon-arrow" class="bx bx-right-arrow-alt"></i>
+													</button>
+												</form>
+												<hr>
+												<div class="text-center"><small class="text-muted">
+														&copy; Sampath Cable Network</small></div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- login page ends -->
+
+			</div>
+		</div>
+	</div>
+
+</body>

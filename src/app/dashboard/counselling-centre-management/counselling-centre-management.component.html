@@ -1,0 +1,362 @@
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-1">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb p-0 mb-0">
+                        <li class="breadcrumb-item"><a href="#"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">Counselling Centre Management</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+
+
+    <section id="basic-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header user-mgt-header">
+                        <h4 class="card-title mb-1 mb-sm-0">Counselling Centre Management</h4>
+                        <button type="button" class="btn btn-light-primary blue-bg btn-sm" data-toggle="modal"
+                            data-target="#createAgency"><i class="bx bx-user-plus">&nbsp;</i> Create Counselling
+                            Centre</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body card-dashboard">
+                            <div class="table-responsive">
+                                <table class="table zero-configuration dhtable-datatable">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Sr.No</th>
+                                            <th>Counselling Centre Name</th>
+                                            <th>Agency Name</th>
+                                            <th>Address</th>
+                                            <th>District</th>
+                                            <th>Short Name</th>
+                                            <th>Mail Id</th>
+                                            <th>Phone No.</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor=" let centre of counsellingCentres; let i=index">
+                                            <td class="text-center">{{i+1}}</td>
+                                            <td>{{centre.name}}</td>
+                                            <td>{{centre.agency.name}}</td>
+                                            <td>{{centre.address}}</td>
+                                            <td>{{centre.district.name}}</td>
+                                            <td>{{centre.short_name}}</td>
+                                            <td>{{centre.email}}</td>
+                                            <td>{{centre.phone_no}}</td>
+
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <div *ngIf="counsellingCentres.length <= 0">
+                                No counselling Centre Found
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<div class="modal fade modal-borderless" id="createAgency" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+        role="document">
+        <div class="modal-content" style="overflow-y: scroll;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Create Counselling Centre</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <form [formGroup]="CounsellingCentreForm" (submit)="createCc()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-1">
+                            <label>Counselling Centre Name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text blue-bg" id="basic-addon1"><i
+                                            class="bx bx-building-house"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Enter Centre Name"
+                                    formControlName="centreName"
+                                    [ngClass]="{'is-invalid': CounsellingCentreForm.get('centreName')?.invalid  && ( CounsellingCentreForm.get('centreName')?.touched ||  CounsellingCentreForm.get('centreName')?.dirty)}">
+                            </div>
+                            <div
+                                *ngIf="submitted || CounsellingCentreForm.get('centreName')?.touched ||  CounsellingCentreForm.get('centreName')?.dirty">
+                                <p class="text-danger"
+                                    *ngIf="CounsellingCentreForm.get('centreName')?.hasError('required')">
+                                    Centre Name is required</p>
+                                <p class="text-danger"
+                                    *ngIf="CounsellingCentreForm.get('centreName')?.hasError('minlength')">
+                                    Centre Name should be at least 3 characters</p>
+                                <p class="text-danger"
+                                    *ngIf="CounsellingCentreForm.get('centreName')?.hasError('maxlength')">
+                                    Centre name should be at most 25 characters</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label>Short Name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text blue-bg" id="basic-addon1"><i
+                                            class="bx bx-building-house"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="short_name" formControlName="shortName"
+                                    placeholder="Enter Agency Short name"
+                                    [ngClass]="{'is-invalid': CounsellingCentreForm.get('shortName')?.invalid  && ( CounsellingCentreForm.get('shortName')?.touched ||  CounsellingCentreForm.get('shortName')?.dirty)}">
+                            </div>
+                            <div
+                                *ngIf="submitted || CounsellingCentreForm.get('shortName')?.touched ||  CounsellingCentreForm.get('shortName')?.dirty">
+                                <p class="text-danger"
+                                    *ngIf="CounsellingCentreForm.get('shortName')?.hasError('required')">
+                                    Short Name is required</p>
+                                <p class="text-danger"
+                                    *ngIf="CounsellingCentreForm.get('shortName')?.hasError('minlength')">
+                                    Short Name should be at least 3 characters</p>
+                                <p class="text-danger"
+                                    *ngIf="CounsellingCentreForm.get('shortName')?.hasError('maxlength')">
+                                    Short Name should be at most 25 characters</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-1">
+                            <label>Address</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text blue-bg" id="basic-addon1"><i
+                                            class="bx bx-building-house"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Enter Address"
+                                    formControlName="address"
+                                    [ngClass]="{'is-invalid':CounsellingCentreForm.get('address')?.invalid && ( CounsellingCentreForm.get('address')?.touched ||  CounsellingCentreForm.get('address')?.dirty)}">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label>District</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text blue-bg" id="basic-addon1"><i
+                                            class="bx bx-map"></i></span>
+                                </div>
+                                <select class="form-select form-control" aria-label="Default select example"
+                                    formControlName="districtId"
+                                    [ngClass]="{'is-invalid': CounsellingCentreForm.get('districtId')?.invalid && ( CounsellingCentreForm.get('districtId')?.touched ||  CounsellingCentreForm.get('districtId')?.dirty)}">
+                                    <option *ngFor="let district of districts" [value]="district.id">{{ district.name }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div
+                                *ngIf="submitted || CounsellingCentreForm.get('districtIid')?.touched ||  CounsellingCentreForm.get('districtId')?.dirty">
+                                <p class="text-danger"
+                                    *ngIf="CounsellingCentreForm.get('districtId')?.hasError('required')">
+                                    Please Select District</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label>Email</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text blue-bg" id="basic-addon1"><i
+                                            class="bx bx bx-envelope"></i></span>
+                                </div>
+                                <input type="email" class="form-control" placeholder=" Enter Email"
+                                    formControlName="email">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label>Contact No.</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text blue-bg" id="basic-addon1"><i
+                                            class="bx bx-phone-call"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Enter Phone Number"
+                                    formControlName="phoneNo"
+                                    [ngClass]="{'is-invalid':  CounsellingCentreForm.get('phoneNo')?.invalid && ( CounsellingCentreForm.get('phoneNo')?.touched ||  CounsellingCentreForm.get('phoneNo')?.dirty)}">
+                            </div>
+                            <div
+                                *ngIf="submitted || CounsellingCentreForm.get('phoneNo')?.touched ||  CounsellingCentreForm.get('phoneNo')?.dirty">
+                                <p class="text-danger"
+                                    *ngIf="CounsellingCentreForm.get('phoneNo')?.hasError('required')">
+                                    Phone Number is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label>Agency</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text blue-bg" id="basic-addon1"><i
+                                            class="bx bx-map"></i></span>
+                                </div>
+                                <select class="form-select form-control" aria-label="Default select example"
+                                    formControlName="agencyId">
+                                    <option *ngFor="let agency of agencies" [value]="agency.id">{{ agency.name }}
+                                </select>
+                            </div>
+                            <div
+                                *ngIf="submitted || CounsellingCentreForm.get('agencyId')?.touched ||  CounsellingCentreForm.get('agencyId')?.dirty">
+                                <p class="text-danger"
+                                    *ngIf="CounsellingCentreForm.get('agencyId')?.hasError('required')">
+                                    Please Select Agency</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1 mt-1">
+                            <label class="text-primary">Is Virtual</label>
+                            <div class="input-group">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow1" name="isVirtual"
+                                                    formControlName="isVirtual" value="true">
+                                                <label for="radioshadow1">Yes</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow2" name="isVirtual"
+                                                    formControlName="isVirtual" value="false">
+                                                <label for="radioshadow2">No</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1 mt-1">
+                            <label class="text-primary">Is Physical</label>
+                            <div class="input-group">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow3" name="isPhysical"
+                                                    formControlName="isPhysical" value="true">
+                                                <label for="radioshadow3">Yes</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow4" name="isPhysical"
+                                                    formControlName="isPhysical" value="false">
+                                                <label for="radioshadow4">No</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1 mt-1" *ngIf="CounsellingCentreForm.value.isPhysical== 'true' ">
+                            <label class="text-primary">Can Create Case</label>
+                            <div class="input-group">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow5" name="canCreateCase"
+                                                    formControlName="canCreateCase" value="true">
+                                                <label for="radioshadow5">Yes</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow6" name="canCreateCase"
+                                                    formControlName="canCreateCase" value="false">
+                                                <label for="radioshadow6">No</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label class="text-primary">Has Fco</label>
+                            <div class="input-group">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow7" name="hasFco"
+                                                    formControlName="hasFco" value="true">
+                                                <label for="radioshadow7">Yes</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow8" name="hasFco"
+                                                    formControlName="hasFco" value="false">
+                                                <label for="radioshadow8">No</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-1">
+                            <label class="text-primary">Has Counsellor</label>
+                            <div class="input-group">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow9" name="hasCounsellor"
+                                                    formControlName="hasCounsellor" value="true">
+                                                <label for="radioshadow9">Yes</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                    <li class="d-inline-block mr-2 mb-1">
+                                        <fieldset>
+                                            <div class="radio radio-shadow radio-danger">
+                                                <input type="radio" id="radioshadow10" name="hasCounsellor"
+                                                    formControlName="hasCounsellor" value="false">
+                                                <label for="radioshadow10">No</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-light-primary" data-dismiss="modal" #closeModel>
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary blue-bg ml-1" (click)="createCc()">
+                    Create Now
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
