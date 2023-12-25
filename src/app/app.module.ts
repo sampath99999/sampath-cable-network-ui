@@ -10,9 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './dashboard/home/home.component';
-import { AgencyManagementComponent } from './dashboard/agency-management/agency-management.component';
-import { CounsellingCentreManagementComponent } from './dashboard/counselling-centre-management/counselling-centre-management.component';
-import { MasterDataComponent } from './dashboard/master-data/master-data.component';
+import {SidebarMenuComponent} from "./dashboard/sidebar-menu/sidebar-menu.component";
+import {HeaderProfileComponent} from "./dashboard/header-profile/header-profile.component";
 
 @NgModule({
 	declarations: [
@@ -20,9 +19,8 @@ import { MasterDataComponent } from './dashboard/master-data/master-data.compone
 		LoginComponent,
 		DashboardComponent,
 		HomeComponent,
-		AgencyManagementComponent,
-		CounsellingCentreManagementComponent,
-  MasterDataComponent
+		SidebarMenuComponent,
+		HeaderProfileComponent,
 	],
 	imports: [
 		BrowserModule,

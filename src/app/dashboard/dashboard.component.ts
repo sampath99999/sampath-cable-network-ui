@@ -12,7 +12,6 @@ import { AuthService } from '../services/auth.service';
 })
 export class DashboardComponent implements OnInit {
 	userDetails: any = {};
-	userMenus:any=[];
 	authService = inject(AuthService);
 	api = inject(RestApiService);
 	router = inject(Router);
@@ -24,12 +23,5 @@ export class DashboardComponent implements OnInit {
 			this.router.navigate([""]);
 			return;
 		}
-		this.api.getData("/getMenus").then((response: any) => {
-			this.userMenus= response.data;
-		})
-	}
-
-	logout() {
-		this.authService.logout();
 	}
 }

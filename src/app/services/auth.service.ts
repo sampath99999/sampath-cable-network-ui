@@ -10,16 +10,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AuthService {
 	public userDetails: any = null;
 	constructor(private api: RestApiService, private router: Router, private spinner: NgxSpinnerService) {
-		if (!this.userDetails && localStorage.getItem("token")) {
-			this.spinner.show();
-			this.api.getData("/getUserDetails").then((response: any) => {
-				this.userDetails = response.data;
-				this.userDetails.shortName = response.data.name.match(/\b\w/g).join('')
-			}).then(() => {
-				this.spinner.hide();
-			})
-
-		}
 	}
 
 	login(credentials: any, callback: any) {
@@ -47,5 +37,20 @@ export class AuthService {
 		}).then(() => {
 			this.spinner.hide();
 		});
+	}
+
+	getUserDetails() {
+		return new Promise((resolve, reject) => {
+			if (!this.userDetails && localStorage.getItem("token")) {
+				this.api.getData("/getUserDetails").then((response: any) => {
+					this.userDetails = response.data;
+					this.userDetails.shortName = response.data.name.match(/\b\w/g).join('')
+				}).finally(() => {
+					resolve(true);
+				})
+			} else {
+				resolve(true);
+			}
+		})
 	}
 }
