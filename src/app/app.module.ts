@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './dashboard/home/home.component';
 import {SidebarMenuComponent} from "./dashboard/sidebar-menu/sidebar-menu.component";
 import {HeaderProfileComponent} from "./dashboard/header-profile/header-profile.component";
+import { UserManagementComponent } from './dashboard/user-management/user-management.component';
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import {HeaderProfileComponent} from "./dashboard/header-profile/header-profile.
 		HomeComponent,
 		SidebarMenuComponent,
 		HeaderProfileComponent,
+  UserManagementComponent,
 	],
 	imports: [
 		BrowserModule,

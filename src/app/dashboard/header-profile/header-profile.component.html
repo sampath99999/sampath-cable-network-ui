@@ -1,0 +1,20 @@
+<ul class="nav navbar-nav float-right">
+	<li class="dropdown dropdown-user nav-item"><a
+			class="dropdown-toggle nav-link dropdown-user-link py-xl-0" href="#" data-toggle="dropdown">
+			<div class="user-nav d-sm-flex d-none"><span
+					class="user-name">{{authService.userDetails?.name}}</span><span
+					class="user-status">Available</span></div>
+			<span>
+				<div class="avatar mr-1 bg-primary bg-lighten-2">
+					<span class="avatar-content">{{authService.userDetails?.shortName}}</span>
+				</div>
+			</span>
+		</a>
+		<div class="dropdown-menu dropdown-menu-right">
+			<a class="dropdown-item" href="my_profile.html"><i class="bx bx-user mr-50"></i> Edit
+				Profile</a>
+			<a class="dropdown-item cursor-pointer" (click)="logout()"><i
+					class="bx bx-power-off mr-50"></i> Logout</a>
+		</div>
+	</li>
+</ul>

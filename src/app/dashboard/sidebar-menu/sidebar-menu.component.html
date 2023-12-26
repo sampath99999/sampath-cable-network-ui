@@ -1,0 +1,26 @@
+<ul class="navigation navigation-main" data-menu="menu-navigation" data-icon-style="" *ngIf="!menusLoaded">
+	<li *ngFor="let number of [1,2,3,4,5]" class="nav-item">
+		<a>
+			<i class="skeleton skeleton-text"></i>
+			<span class="skeleton skeleton-text"></span>
+		</a>
+	</li>
+</ul>
+
+<ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="">
+
+	<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class=" nav-item"
+		*ngFor="let menu of userMenus">
+		<a [routerLink]="menu.link">
+			<i [class]="menu.icon"></i>
+			<span class="menu-title">{{menu.label}}</span>
+		</a>
+	</li>
+</ul>
+<div *ngIf="menusLoaded && userMenus.length == 0">
+	<p class="text-secondary text-center">No Menu's Available</p>
+</div>
+<div *ngIf="errorOccurred" class="text-center">
+	<h1 class="text-danger">!</h1>
+	<p>Something Went Wrong!</p>
+</div>
