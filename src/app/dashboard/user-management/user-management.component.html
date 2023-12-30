@@ -112,7 +112,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="row">
+				<form [formGroup]="userCreateForm" class="row">
 					<div class="col-md-4 mb-1">
 						<label for="full_name">Full Name</label>
 						<div class="input-group">
@@ -120,7 +120,7 @@
 								<span class="input-group-text blue-bg"><i
 									class="bx bx-user"></i></span>
 							</div>
-							<input id="full_name" type="text" class="form-control" placeholder="Enter User Full Name">
+							<input id="full_name" type="text" class="form-control" placeholder="Enter User Full Name" formControlName="full_name">
 						</div>
 					</div>
 					<div class="col-md-4 mb-1">
@@ -129,7 +129,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text blue-bg"><i class="bx bx-envelope"></i></span>
 							</div>
-							<input id="email" type="text" class="form-control" placeholder="Type detail here">
+							<input id="email" type="email" class="form-control" placeholder="Type detail here" formControlName="email">
 						</div>
 					</div>
 					<div class="col-md-4 mb-1">
@@ -139,7 +139,7 @@
 								<span class="input-group-text blue-bg"><i
 									class="bx bx-phone-call"></i></span>
 							</div>
-							<input id="phone" type="text" class="form-control" placeholder="Type detail here">
+							<input id="phone" type="text" class="form-control" placeholder="Type detail here" formControlName="phone">
 						</div>
 					</div>
 					<div class="col-md-4 mb-1">
@@ -148,7 +148,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text blue-bg"><i class="bx bxs-face"></i></span>
 							</div>
-							<select id="role_id" class="form-control">
+							<select id="role_id" class="form-control" formControlName="role_id">
 								<option selected="">Choose...</option>
 							</select>
 						</div>
@@ -173,7 +173,7 @@
 							<input type="text" class="form-control" id="password" placeholder="Type detail here">
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 
