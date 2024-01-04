@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {env} from 'src/environments/environment';
-import {Environment} from "@angular/cli/lib/config/workspace-schema";
-import {Router} from "@angular/router";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { env } from 'src/environments/environment';
+import { Environment } from "@angular/cli/lib/config/workspace-schema";
+import { Router } from "@angular/router";
 
 @Injectable({
 	providedIn: 'root'
@@ -22,9 +22,9 @@ export class RestApiService {
 
 	public getData(endpoint: string, data = {}) {
 		return new Promise((resolve, reject) => {
-			this.http.get(env.apiURL + endpoint, {params: data, headers: this.getHeaders()}).subscribe((res) => {
-					resolve(res);
-				},
+			this.http.get(env.apiURL + endpoint, { params: data, headers: this.getHeaders() }).subscribe((res) => {
+				resolve(res);
+			},
 				(error) => {
 					if (error.status == 401) {
 						this.handleApiError(error);
@@ -38,9 +38,9 @@ export class RestApiService {
 
 	public postData(endpoint: string, data = {}) {
 		return new Promise((resolve, reject) => {
-			this.http.post(env.apiURL + endpoint, data, {headers: this.getHeaders()}).subscribe((res) => {
-					resolve(res);
-				},
+			this.http.post(env.apiURL + endpoint, data, { headers: this.getHeaders() }).subscribe((res) => {
+				resolve(res);
+			},
 				(error) => {
 					if (error.status == 401) {
 						this.handleApiError(error);
@@ -54,9 +54,25 @@ export class RestApiService {
 
 	public putData(endpoint: string, data = {}) {
 		return new Promise((resolve, reject) => {
-			this.http.put(env.apiURL + endpoint, data, {headers: this.getHeaders()}).subscribe((res) => {
-					resolve(res);
-				},
+			this.http.put(env.apiURL + endpoint, data, { headers: this.getHeaders() }).subscribe((res) => {
+				resolve(res);
+			},
+				(error) => {
+					if (error.status == 401) {
+						this.handleApiError(error);
+					} else {
+						reject(error);
+					}
+				}
+			);
+		});
+	}
+
+	public deleteData(endpoint: string, data = {}) {
+		return new Promise((resolve, reject) => {
+			this.http.delete(env.apiURL + endpoint, { headers: this.getHeaders() }).subscribe((res) => {
+				resolve(res);
+			},
 				(error) => {
 					if (error.status == 401) {
 						this.handleApiError(error);

@@ -56,9 +56,8 @@ export class UserManagementComponent implements OnInit {
 		this.api.postData("/user/create", this.userCreateForm.value).then(
 			(response: any) => {
 				Swal.fire("Success", "User Created Successfully!", "success");
-				this.userCreateForm.reset();
-				this.formSubmitted = false;
-				// Update User List
+				this.resetForm();
+				this.userList.push(response.data.user);
 			},
 			(response: any) => {
 				Swal.fire("Warning", response?.error?.message ?? "Something Went Wrong!", "warning");
@@ -93,5 +92,40 @@ export class UserManagementComponent implements OnInit {
 		).finally(() => {
 			this.spinner.hide();
 		})
+	}
+
+	async deleteUser(index: any) {
+		let confirm = await Swal.fire({
+			title: "",
+			html: "Are you sure you want to Delete this user?",
+			icon: "question",
+			showConfirmButton: true,
+			showCancelButton: true
+		});
+		if (!confirm.isConfirmed) return;
+
+		this.spinner.show();
+		this.api.deleteData("/user/" + this.userList[index].id).then(
+			() => {
+				this.userList.splice(index, 1);
+			},
+			(response) => {
+				Swal.fire("Warning", response.error.message ?? "Something went wrong", 'error');
+			}
+		).finally(() => {
+			this.spinner.hide();
+		});
+	}
+
+	resetForm() {
+		this.userCreateForm.reset({
+			name: '',
+			email: '',
+			password: '',
+			phone: '',
+			role_id: '',
+			username: ''
+		});
+		this.formSubmitted = false;
 	}
 }
