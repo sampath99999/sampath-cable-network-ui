@@ -13,6 +13,7 @@ import { HomeComponent } from './dashboard/home/home.component';
 import {SidebarMenuComponent} from "./dashboard/sidebar-menu/sidebar-menu.component";
 import {HeaderProfileComponent} from "./dashboard/header-profile/header-profile.component";
 import { UserManagementComponent } from './dashboard/user-management/user-management.component';
+import { ChannelPackageManagementComponent } from './dashboard/channel-package-management/channel-package-management.component';
 
 @NgModule({
 	declarations: [
@@ -23,6 +24,7 @@ import { UserManagementComponent } from './dashboard/user-management/user-manage
 		SidebarMenuComponent,
 		HeaderProfileComponent,
   UserManagementComponent,
+  ChannelPackageManagementComponent,
 	],
 	imports: [
 		BrowserModule,
